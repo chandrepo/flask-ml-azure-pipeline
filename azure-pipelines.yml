@@ -48,8 +48,11 @@ stages:
       displayName: "Install requirements"
 
     - script: |
-        python -m pip install flake8
-        flake8 .
+        python -m venv antenv
+        source antenv/bin/activate
+        make install
+        make lint
+      workingDirectory: $(projectRoot)
       displayName: 'Run lint tests'
       
     - task: ArchiveFiles@2
